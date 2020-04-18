@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="input.css ">
+	<title>Input Data Rental</title>
+</head>
+
+<body onload="showTime(); SetDate();">
+<form id="inputdata">
+
+		<div class="judulfom">
+			<h1>Input Data Rental</h1>
+		</div>
+		<table border=0 cellpadding=5 cellspacing=0>
+
+      <div>
+			<tr>
+				<td><label for="tanggalsewa">Tanggal Sewa</label></td>
+				<td><input class="form" type="text" name="Tanggal_Sewa" id="myDate" size="50" disabled required></td>
+			</tr>
+			<tr>
+				<td><label for="nama">Nama Pelanggan</label></td>
+				<td><input class="form" type="text" id="nama" name="Nama" placeholder="Nama Pembeli" size="50" required></td>
+			</tr>
+			<tr>
+				<td><label for="alamat">Alamat</label></td>
+				<td><input class="form" type="text" id="alamat" name="Alamat" placeholder="alamat" size="50" required></td>
+			</tr>
+			<tr>
+				<td><label for="nomertelpon">Nomer Telpon</label></td>
+				<td><input class="form" type="number" id="nomer" name="Nomer_Telpon" placeholder="no hp" size="50" required></td>
+			</tr>
+			<tr>
+				<td><label for="waktusewa">Waktu Sewa</label></td>
+				<td><input class="form" type="text" name="Waktu_Sewa" id="clock" size="50" disabled required></td>
+			</tr>
+			<tr>
+				<td><label for="fotocopySIM">Fotocopy SIM</label>
+					<select id="pilihsim" name="Fotocopy_SIM" onchange="sim()">
+					<option disabled selected>Pilih</option>
+					<option>Tersedia</option>
+					<option>Tidak Tersedia</option></td>
+			</tr>
+
+			<tr>
+			<td><label for="KTPasli">KTP Asli</label>
+				<select id="pilihktp" name="KTP_Asli" onchange=" ktp ()">
+				<option disabled selected>Pilih</option>
+				<option>Tersedia</option>
+				<option>Tidak Tersedia</option></td>
+			</tr>
+		</table>
+  </div>
+
+		<div class="ctak fom">
+			<hr>
+			<p id="cetak"><b>Lis Data</b> </p>
+				<hr>
+				<table>
+					<thead>
+						<tr>
+							<td>Tanggal Sewa :</td>
+							<td id="tanggalCetak"> </td>
+						</tr>
+						<tr>
+							<td>Nama Pelanggan :</td>
+							<td id="namaCetak"></td>
+						</tr>
+						<tr>
+							<td>Alamat :</td>
+							<td id="alamatCetak"></td>
+						</tr>
+						<tr>
+							<td>Nomer Telepon :</td>
+							<td id="telponCetak"></td>
+						</tr>
+						<tr>
+							<td>Waktu Sewa :</td>
+							<td id="waktuCetak"></td>
+						</tr>
+						<tr>
+							<td><table> SIM_A :</table></td>
+							<td id="simCetak"></td>
+						</tr>
+
+						<tr>
+							<td>KTP_Asli :</td>
+							<td id="ktpCetak"></td>
+						</tr>
+					</thead>
+				</table>
+		</div>
+
+		<div>
+		<td >Jenis Mobil</td>
+		<select  id="pilih" name="Jenis_Mobil" onchange=" mobil ()">
+		<option disabled selected>Pilih</option>
+		<option>Agiya</option>
+		<option>Alphard</option>
+		<option>Avanza</option>
+        <option>Huling</option>
+        <option>Jazz</option>
+        <option>Xenia</option>
+        <option>Xpander</option>
+        <option>Yaris</option>
+	  </select required>
+	  
+			<table>
+				<thead>
+					<tr>
+						<td>Nama Mobil :</td>
+						<td id="pilihmobil"> </td>
+						<tr></tr>
+					</tr>
+			<tr>
+            <td>List Harga Mobil:</td>
+            <tr></tr>
+            <td id="hargamobil1"> </td>
+            <tr></tr>
+            <td id="hargamobil2"> </td>
+            <tr></tr>
+            <td id="hargamobil3"> </td>
+          </tr>
+          <tr>
+            <td><label for="harga">Harga Sewa</label></td>
+            <td><input class="form" type="number" id="harga sewa" name="Harga_Sewa" placeholder="Harga Mobil" size="50"></td>
+          </tr>
+          <tr>
+            <td><label for="tanggalpengembalian">Tanggal Pengembalian</label></td>
+            <td><input type="date" name="Tanggal_Pengembalian" placeholder="YYYY-MM-DD" size="50"></td>
+		  </tr>
+		  
+		  <tr>
+            <td><label for="Waktu Pengembalian">Waktu Pengembalian</label></td>
+            <td><input type="time" name="Waktu_Pengembalian" placeholder="hh:mm" size="50"></td>
+          </tr>
+				</thead>
+      </table>
+    </div>
+    <a onclick="cetakData()" class="btn btn-info" role="button">
+			<input type="submit">
+    </a>
+  </form>
+    
+		<script>
+			function cetakData() {
+				document.getElementById("tanggalCetak").innerHTML = document.getElementById("myDate").value;
+				document.getElementById("namaCetak").innerHTML = document.getElementById("nama").value;
+				document.getElementById("alamatCetak").innerHTML = document.getElementById("alamat").value;
+				document.getElementById("telponCetak").innerHTML = document.getElementById("nomer").value;
+				document.getElementById("waktuCetak").innerHTML = document.getElementById("clock").value;
+
+			}
+		</script>
+
+		<script type="text/javascript">
+			function SetDate() {
+				var date = new Date();
+				var day = date.getDate();
+				var month = date.getMonth() + 1;
+				var year = date.getFullYear();
+
+				if (month < 10) month = "0" + month;
+				if (day < 10) day = "0" + day;
+
+				var today = day + "-" + month + "-" + year;
+
+				document.getElementById('myDate').value = today;
+			}
+		</script>
+
+
+		<script type="text/javascript">
+			function showTime() {
+				var a_p = "";
+				var today = new Date();
+				var curr_hour = today.getHours();
+				var curr_minute = today.getMinutes();
+				var curr_second = today.getSeconds();
+				if (curr_hour < 12) {
+					a_p = "AM";
+				} else {
+					a_p = "PM";
+				}
+				if (curr_hour == 0) {
+					curr_hour = 12;
+				}
+				if (curr_hour > 12) {
+					curr_hour = curr_hour - 12;
+				}
+				var today = curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
+				document.getElementById('clock').value = today;
+			}
+		</script>
+
+
+		<script type="text/javascript">
+
+			let dataMobil1 = [
+			{name: 'Agiya', price1: 200000},
+			{name: 'Alphard', price1: 300000},
+			{name: 'Avanza', price1: 200000},
+			{name: 'Huling', price1: 250000},
+       		{name: 'Jazz', price1: 150000},
+        	{name: 'Xenia', price1: 200000},
+        	{name: 'Xpander', price1: 300000},
+        	{name: 'Yaris', price1: 300000}, 
+			]
+      let dataMobil2 = [
+        	{name: 'Agiya', price2: 350000},
+			{name: 'Alphard', price2: 550000},
+			{name: 'Avanza', price2: 350000},
+			{name: 'Huling', price2: 450000},
+        	{name: 'Jazz', price2: 250000},
+        	{name: 'Xenia', price2: 350000},
+        	{name: 'Xpander', price2: 550000},
+        	{name: 'Yaris', price2: 550000},
+      ]
+      let dataMobil3 = [
+        {name: 'Agiya', price3: 400000},
+			{name: 'Alphard', price3: 650000},
+			{name: 'Avanza', price3: 450000},
+			{name: 'Huling', price3: 500000},
+        	{name: 'Jazz', price3: 350000},
+        	{name: 'Xenia', price3: 450000},
+        	{name: 'Xpander', price3: 650000},
+        	{name: 'Yaris', price3: 650000},
+      ]
+			
+			function mobil() {
+				var x = document.getElementById("pilih").value;
+				for ( var i = 0; i < dataMobil1.length; i++ ) {
+					if (x === dataMobil1[i].name) {
+						document.getElementById("pilihmobil").innerHTML = "" + dataMobil1[i].name;
+						document.getElementById("hargamobil1").innerHTML = "5 Jam :" + dataMobil1[i].price1;
+						break;
+					}
+				};
+        	for ( var i = 0; i < dataMobil2.length; i++ ) {
+					if (x === dataMobil2[i].name) {
+						document.getElementById("hargamobil2").innerHTML = "10 Jam :" + dataMobil2[i].price2;
+						break;
+					}
+				};
+        	for ( var i = 0; i < dataMobil3.length; i++ ) {
+					if (x === dataMobil3[i].name) {
+						document.getElementById("hargamobil3").innerHTML = "12 Jam :" + dataMobil3[i].price3;
+						break;
+					}
+				};
+
+
+			}
+		</script>	
+				<script type="text/javascript">
+				function sim() {
+				var x = document.getElementById("pilihsim").value;
+						document.getElementById("simCetak").innerHTML = "" + x;
+	
+					}
+		</script>
+
+		<script type="text/javascript" >
+			function ktp() {
+				var y = document.getElementById("pilihktp").value;
+						document.getElementById("ktpCetak").innerHTML = "" + y;
+				}
+        </script>
+        
+        <script>
+            const electron = require("electron");
+            const {
+               ipcRenderer
+            } = electron;
+   
+            const form = document.getElementById("inputdata");
+            const elements = {};
+   
+            form.addEventListener("submit", event => {
+               event.preventDefault();
+   
+               for (let i = 0; i < form.elements.length; i++) {
+                  if (form.elements[i].type !=="submit")
+                  elements[form.elements[i].name] = form.elements[i].value;
+               }
+               ipcRenderer.send("inputdata:create", elements);
+
+            });
+         </script>
+    
+</body>
+</html>

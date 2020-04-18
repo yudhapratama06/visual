@@ -1,0 +1,60 @@
+body{
+    font-family: -apple-sys
+    tem, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-image: url(foto/list.jpg);
+    background-size: cover;
+    width: 0;
+    height: 0;
+   
+}
+.ats{
+    font-size: 25px;
+    color: white;
+    text-shadow: 2px 2px 3px white;
+    position: relative;
+    margin-left: 350px;
+    font-style: inherit;
+    font-family: serif;
+
+
+}
+.mobil1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+}
+.mobil1 .box {
+    position: relative;
+    margin-bottom: 10px;
+    width: 600px;
+    height: 150px;
+    margin: 40px 0;
+    background-color: white;
+    box-shadow: rgba(3px, 7px, 8px, 10px);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    display: flex;
+    color: rgba(0, 0, 0, 1);
+    margin-left: 75px;
+    border-radius: 8px;
+    
+
+}
+
+.mobil1 .box .img{
+    float: left;
+}
+
+.mobil1 .box .isi{
+    font-size: 20px;
+    margin-top: 5px;
+    margin-left: 50px;
+    position: relative;
+    color: rgb(44, 163, 199);
+    float: left;
+}
+
+
+
+

@@ -1,0 +1,86 @@
+<html>
+    
+    <head>
+        <link rel="stylesheet" type="text/css" href="list.css ">
+    </head>
+  
+    <body>
+    <div class="judul">
+      <hr>
+      <center> Data Rental Mobil </center>
+      <hr>
+    </div>
+
+      <div id="list"></div> 
+
+    </body>
+
+    <script>
+       const electron = require("electron");
+       const {ipcRenderer} =electron;
+       ipcRenderer.send("rental:request:lis");
+
+       ipcRenderer.on("rental:request:lis", (event, mobil) => {
+         const listDiv = document.getElementById ("list");
+         mobil.forEach(mobil => {
+         const mobilDiv = document.createElement("div");
+         const Tanggal_SewaParagraph = document.createElement("p");
+         Tanggal_SewaParagraph.innerHTML = `Tanggal Sewa: ${mobil.Tanggal_Sewa}`;
+
+         const NamaParagraph = document.createElement("p");
+         NamaParagraph.innerHTML = `Nama: ${mobil.Nama}`;
+
+         const AlamatParagraph = document.createElement("p");
+         AlamatParagraph.innerHTML = `Alamat: ${mobil.Alamat}`;
+
+         const Nomer_TelponParagraph = document.createElement("p");
+         Nomer_TelponParagraph.innerHTML = `Nomer Telpon: ${mobil.Nomer_Telpon}`;
+
+         const Waktu_SewaParagraph = document.createElement("p");
+         Waktu_SewaParagraph.innerHTML = `Waktu Sewa: ${mobil.Waktu_Sewa}`;
+
+         const Fotocopy_SIMParagraph = document.createElement("p");
+         Fotocopy_SIMParagraph.innerHTML = `Fotocopy SIM: ${mobil.Fotocopy_SIM}`;
+
+         const KTP_AsliParagraph = document.createElement("p");
+         KTP_AsliParagraph.innerHTML = `KTP Asli: ${mobil.KTP_Asli}`;
+
+         const Jenis_MobilParagraph = document.createElement("p");
+         Jenis_MobilParagraph.innerHTML = `Jenis Mobil: ${mobil.Jenis_Mobil}`;
+
+         const Harga_SewaParagraph = document.createElement("p");
+         Harga_SewaParagraph.innerHTML = `Harga Sewa: ${mobil.Harga_Sewa}`;
+
+         const Tanggal_PengembalianParagraph = document.createElement("p");
+         Tanggal_PengembalianParagraph.innerHTML = `Tanggal Pengembalian: ${mobil.Tanggal_Pengembalian}`;
+
+         const Waktu_PengembalianParagraph = document.createElement("p");
+         Waktu_PengembalianParagraph.innerHTML = `Waktu Pengembalian: ${mobil.Waktu_Pengembalian}`;
+
+         const doneParagraph = document.createElement("p");
+         doneParagraph.innerHTML = `Done: ${mobil.done ? "Yes" : "No"}`;
+       
+         const hr = document.createElement("hr");
+
+         mobilDiv.appendChild(Tanggal_SewaParagraph);
+         mobilDiv.appendChild(NamaParagraph);
+         mobilDiv.appendChild(AlamatParagraph);
+         mobilDiv.appendChild(Nomer_TelponParagraph);
+         mobilDiv.appendChild(Waktu_SewaParagraph);
+         mobilDiv.appendChild(Fotocopy_SIMParagraph);
+         mobilDiv.appendChild(KTP_AsliParagraph);
+         mobilDiv.appendChild(Jenis_MobilParagraph);
+         mobilDiv.appendChild(Harga_SewaParagraph);
+         mobilDiv.appendChild(Tanggal_PengembalianParagraph);
+         mobilDiv.appendChild(Waktu_PengembalianParagraph);
+         mobilDiv.appendChild(doneParagraph);
+         mobilDiv.appendChild(hr);
+
+         listDiv.append(mobilDiv);
+
+       });
+       
+    });
+
+</script>
+</html>  

@@ -1,0 +1,10 @@
+body{
+    background-image: url(foto/list.jpg);
+    background-size: cover;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;   
+}
+.judul{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
