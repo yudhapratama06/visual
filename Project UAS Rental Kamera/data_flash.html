@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sewa kamara murah dan berkualitas</title>
+    <link rel="stylesheet" href="./alat.css">
+</head>
+<body>
+    <h1>Daftar Flash</h1>
+
+        <div class="all">
+           <div class="ls" onclick="flashgodox()" id="godox">
+                <p id="fgodox">Flash Godox</p>
+                <img id="gambargodox" src="./img/godox.png" alt="">
+                <p class="hargaalat">Rp<span id="harga_godox">150,000</span>/hari</p>
+            </div>
+        </div>
+        <div class="all">
+            <div class="ls" onclick="reflektor()" id="reflektor">
+                <p id="lreflektor">Reflektor</p>
+                <img id="gambarreflektor" src="./img/reflektor.png" alt="">
+                <p class="hargaalat">Rp<span id="harga_reflektor">80,000</span>/hari</p>
+            </div>
+        </div>
+        <div class="all">
+            <div class="ls" onclick="flashyongnuo()" id="yongnuo">
+                <p id="fyongnuo">Flash Yongnuo</p>
+                <img id="gambaryongnuo" src="./img/youngnow.png" alt="">
+                <p class="hargaalat">Rp<span id="harga_yongnuo">100,000</span>/hari</p>
+            </div>
+        </div>
+ 
+    
+    
+    <script>
+
+        function flashgodox(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("godox").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("fgodox").innerHTML,
+                    harga: document.getElementById("harga_godox").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function reflektor(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("reflektor").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("lreflektor").innerHTML,
+                    harga: document.getElementById("harga_reflektor").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function flashyongnuo(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("yongnuo").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("fyongnuo").innerHTML,
+                    harga: document.getElementById("harga_yongnuo").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+    </script>
+</body>
+</html>

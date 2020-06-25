@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sewa kamara murah dan berkualitas</title>
+    <link rel="stylesheet" href="./home.css">
+  </head>
+  <body>
+    <div class="box">
+            <a  onclick="button()">
+                <button class="button">Sewa Alat</button>
+            </a>
+    </div>
+
+
+
+    <script>
+        function button(){
+         const { ipcRenderer } = require('electron');
+         ipcRenderer.send("nexfom"); 
+        }
+
+    </script>
+  </body>
+</html>

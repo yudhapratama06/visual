@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sewa kamara murah dan berkualitas</title>
+    <link rel="stylesheet" href="./daftarsewa.css">
+</head>
+<body>
+    <h1>Daftar sewa anda</h1>
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>No Telpon</th>
+                <th>Alamat</th>
+                <th>Nama Alat</th>
+                <th>Tanggal sewa</th>
+                <th>Waktu sewa</th>
+                <th>Tanggal kembali</th>
+                <th>Waktu kembali</th>
+
+            </tr>
+        </thead>
+        <tbody id="list_data_sewa"></tbody>
+    </table>
+
+
+    <script>
+        const electron = require("electron");
+        const {ipcRenderer} = electron;
+        ipcRenderer.send("daftar_penyewaan:request:list");
+        
+        ipcRenderer.on('daftar_penyewaan:response:list', (event, mysewa,) => {
+        const listKamera = document.getElementById("list_data_sewa");
+
+        mysewa.forEach(mysewa => {
+
+        let tabel = document.createElement('tr');
+        tabel.innerHTML = "<td>" + mysewa.name + "</td>";
+        tabel.innerHTML += "<td>" + mysewa.number + "</td>";
+        tabel.innerHTML += "<td>" + mysewa.alamat + "</td>";
+        tabel.innerHTML += "<td>" + mysewa.alat_yang_disewa + "</td>";
+        tabel.innerHTML += "<td>" + mysewa.tanggal_mulai_sewa + "</td>";
+        tabel.innerHTML += "<td>" + mysewa.waktu_mulai_sewa + "</td>";
+        tabel.innerHTML += "<td>" + mysewa.tanggal_pengembalian + "</td>";
+        tabel.innerHTML += "<td>" + mysewa.waktu_pengembalian + "</td>";
+
+
+
+        listKamera.appendChild(tabel);
+
+        });
+    });
+
+    </script>
+</body>
+</html>

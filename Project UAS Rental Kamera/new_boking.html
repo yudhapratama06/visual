@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Sewa kamara murah dan berkualitas</title>
+    <link rel="stylesheet" href="./new_bok.css">
+</head>
+<body>
+    <h1>Isi form data diri dengan benar <br>
+    sesuai dengan KTP </h1>
+    <form id="form" >
+        <div class="informasi">
+            <label for="name"> Nama : </label><br>
+            <input type="text" id="nama" name="name" required><br><br>
+            <label for="number">No. Telepon :</label> <br>
+            <input type="number" name="number" required><br><br> 
+            <label for="alamat">Alamat : </label> <br>
+            <input type="text" name="alamat" required><br><br>
+        </div>
+        <div class="waktu">
+            <div class="waktu_sewa">
+                <label for="date">Tanggal Mulai Sewa :</label> <br> 
+                <input id="tanggal_mulai_sewa" type="date" name="tanggal_mulai_sewa" required> <br><br>
+                <label for="time">Waktu Mulai Disewa :</label> <br>
+                <input type="time" name="waktu_mulai_sewa" required> <br> <br>
+            </div>
+            <div class="waktukembali">
+                <label for="date">Tanggal Pengembalian : </label>   <br>    
+                <input  id="tanggal_pengembalian" type="date" name="tanggal_pengembalian" required><br><br>
+                <label for="time">Waktu Pengembalian :</label>  <br>
+                <input type="time" name="waktu_pengembalian" required> <br><br>
+            </div>
+        </div>
+        <div class="alat">
+            <label for="alat">Alat yang disewa :</label> <br>
+            <input type="text" name="alat_yang_disewa" id="pilihan_alat" required> <br>
+            <div>
+                <p>Harga Alat : <span id="harga_sewa">-</span> /hari</p>
+               <img src="" id="img_alat" alt="">
+            </div>
+            <button type="button" name="tombol" value="Pilih_alat" onclick="pilihalat()">Pilih Alat</button>
+        </div>
+    <button type="submit" id="sumbit"  value="Boking" onclick="status_alat()" > Boking</button>
+       
+    </form>
+
+   
+
+    <script>
+        const electron = require("electron");
+        const{
+            ipcRenderer
+        } = electron;
+
+        function pilihalat(){
+         const { ipcRenderer } = require('electron');
+         ipcRenderer.send("pilihalat"); 
+        }
+
+        ipcRenderer.on('tampilkan', (event, sewa) => {
+            let kalimat = document.getElementById("pilihan_alat");
+            kalimat.value = sewa.pilihan;
+
+            let x = document.getElementById("harga_sewa");
+            x.innerHTML = sewa.harga;
+
+        });
+
+        const form = document.getElementById("form");
+        const elements = {};
+
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+
+            for (let i = 0; i < form.elements.length; i++){
+                if (form.elements[i].type !== "submit")
+                elements[form.elements[i].name] = form.elements[i].value;
+            }
+
+           
+
+            ipcRenderer.send("sewa:create", elements);
+        });
+
+        function status_alat(){
+            const { ipcRenderer } = require('electron');
+            let tanggal_sewa = document.getElementById("tanggal_mulai_sewa").value;
+            let tanggal_kembali = document.getElementById("tanggal_pengembalian").value;
+          
+            let info = {
+                pilihan: document.getElementById("pilihan_alat").value,
+                harga: document.getElementById("harga_sewa").innerHTML,
+                hari : parseDate(tanggal_sewa,tanggal_kembali)
+            };
+            ipcRenderer.send('status_alat', info); 
+            
+        }
+
+        function parseDate(date1,date2) {
+             
+                dt1 = new Date(date1);
+                dt2 = new Date(date2);
+                return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+                
+            
+        }
+
+
+    </script>
+
+    
+</body>
+</html>

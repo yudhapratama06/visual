@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sewa kamara murah dan berkualitas</title>
+    <link rel="stylesheet" href="./alat.css">
+</head>
+<body>
+    <h1>Daftar Kamera</h1>
+    
+        <div class="all">
+           <div class="ls" onclick="nikoncamera()" id="nikon">
+                <p id="cnikon">Camera Nikon</p>
+                <img id="gambarnikon" src="./img/nikon.png" alt="">
+                <p class="hargaalat">Rp<span id="harga_nikon">200,000</span>/hari</p>
+            </div>
+        </div>
+        <div class="all">
+            <div class="ls" onclick="canoncamera()" id="canon">
+                <p id="ccanon">Camera Canon</p>
+                <img id="gambarcanon" src="./img/canon.png" alt="">
+                <p class="hargaalat">Rp<span id="harga_canon">150,000</span>/hari</p>
+            </div>
+        </div>
+        <div class="all">
+            <div class="ls" onclick="lumixcamera()" id="lumix">
+                <p id="clumix">Camera Lumix</p>
+                <img id="gambarlumix" src="./img/lumix.png" alt="">
+                <p class="hargaalat">Rp<span id="harga_lumix">100,000</span>/hari</p>
+            </div>
+        </div>
+
+        <div class="all">
+            <div class="ls" onclick="sonycamera()" id="sony">
+                 <p id="csony">Camera Sony</p>
+                 <img id="gambarsony" src="./img/sony.png" alt="">
+                 <p class="hargaalat">Rp<span id="harga_sony">250,000</span>/hari</p>
+             </div>
+         </div>
+    
+    
+    
+    <script>
+
+        function nikoncamera(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("nikon").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("cnikon").innerHTML,
+                    gambar: document.getElementById("gambarnikon").src,
+                    harga: document.getElementById("harga_nikon").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function canoncamera(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("canon").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("ccanon").innerHTML,
+                    harga: document.getElementById("harga_canon").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function lumixcamera(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("lumix").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("clumix").innerHTML,
+                    harga: document.getElementById("harga_lumix").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function sonycamera(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("sony").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("csony").innerHTML,
+                    harga: document.getElementById("harga_sony").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+
+    </script>
+</body>
+</html>

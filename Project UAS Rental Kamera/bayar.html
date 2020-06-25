@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pembayaran.css">
+    <title>Sewa kamara murah dan berkualitas</title>
+</head>
+<body>
+    <h1>Transaksi</h1>
+
+    <form id="form">
+        <div class="bayar">
+            <div id="jenis_alat">
+                <p>Harga : <span id="harga_sewa"></span></p>
+                <p>Waktu sewa : <span id="waktu_sewa"></span> </p>
+                <p>Total Bayar : <span id="jumlah_total_harga" name ="rp">-</span> </p>
+            <div class="waktu_sewa">
+                <label for="date">Tanggal Transaksi :</label> <br> 
+                <input id="tanggal_mulai_sewa" type="date" name="tanggal_mulai_sewa" required> <br><br>
+               
+                    </div>
+                
+            </div>
+            <div id="transaksi_alat">
+                <label for="time">Waktu Transaksi :</label> <br>
+                <input type="time" name="waktu_mulai_sewa" required> <br> <br>
+
+                <label for="number">Nominal pembayaran : </label> <br>
+                <input type="number" id="bayar" name="bayar"   placeholder="Rp" onchange="uang()"> <br><br>
+                <label for="number">Kembalian : </label> 
+                <span id="kembali" name="kembali"></span>
+                <div id="total_bayar">
+                    <input type="submit" id="submit" name="button" value="Bayar" onclick="transaksi()">
+                 </div>
+            </div>
+        </div>
+    </form>
+    
+    <script>
+        
+        window.$ = window.jQuery = require("jquery");
+        function uang (){
+        var harga;
+        var bayar;
+        var kembalian;
+        harga = document.getElementById("jumlah_total_harga").innerHTML;
+        bayar = document.getElementById("bayar").value;
+        kembali = parseInt(bayar)-parseInt(harga);
+        document.getElementById("kembali").innerHTML=kembali+',000' ;
+}
+    </script>  
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        ipcRenderer.send("sewa_kamera:request:list");
+
+        ipcRenderer.on('sewa_kamera:response:list', (event, sewa) => {
+        let Kamera = document.getElementById("jenis_alat");
+        console.log("set 0: ",sewa[0].hari);
+        
+        sewa.forEach(sewa =>{
+        const infoKamera = document.createElement("Kamera");
+        infoKamera.setAttribute("sewa","alat");
+
+        let HargaKamera= document.getElementById("harga_sewa");
+        HargaKamera.innerHTML = sewa.harga;
+        
+        let y =document.getElementById("waktu_sewa");
+        y.innerHTML = sewa.hari+ ' hari';
+
+        let jumlah_total_harga =document.getElementById("jumlah_total_harga");
+        jumlah_total_harga.innerHTML = (parseInt(sewa.harga) * parseInt(sewa.hari))+',000';
+
+        })
+    })
+ 
+        function transaksi(){
+                const electron = require("electron");
+                const { ipcRenderer, dialog } = electron;
+
+                const form = document.getElementById("form");
+                const elements = {};
+            
+                form.addEventListener("submit", event => {
+                    event.preventDefault();
+
+                    for (let i = 0; i < form.elements.length; i++){
+                        if (form.elements[i].type !== "submit")
+                        elements[form.elements[i].name] = form.elements[i].value;
+                    }
+
+                    ipcRenderer.send("pembayaran", elements);
+                }); 
+
+            }
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-image: url("./jpg/bg2.jpg");
+}
+
+#form{
+    padding: 16px;
+    border-radius: 20px;
+    font-size: 16px; 
+}
+
+.bayar{
+    flex: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); 
+    padding: 16px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+}
+
+#jenis_alat{
+    flex: 50%;
+}
+
+#transaksi_alat{
+    flex: 50%;
+}
+
+input#submit {
+    height: auto;
+    position: fixed;
+    width: 150px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    font-weight: bold;
+    position: static;
+    cursor: pointer;
+    color: black;
+    flex: 50%;
+    margin-left: 00px;
+    border: none;
+    border-radius: 12px;
+    display: inline-block;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    background-color: white; 
+    border: 2px solid rgb(46, 44, 44);
+    border-radius: 12px;
+    margin-top: 20px;
+}
+    
+  input#submit:hover {
+    background-color: rgb(36, 36, 36);
+    color: white;}
+
+input{
+    
+    width: 250px;
+    height: 30px;
+    padding: 12px 20px;
+    margin: 8px;
+    background-color: none;
+    border: none;
+    color: none;
+    border-bottom: 2px solid black;
+}
+
+input:focus{
+    padding-left: 10px;
+    border: 2px solid dodgerblue;  
+    background-color: rgba(0, 0, 0, 0.05);  
+    outline: none !important;
+}
+
+
+body{
+    height: 100%;
+    background-color: whitesmoke;
+}
+
+
+h1{
+    text-align: center;
+}
+
+
+
+
+#total_bayar p{
+    width: 250px;
+    margin-right: 0;
+    position: absolute;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sewa kamara murah dan berkualitas</title>
+    <link rel="stylesheet" href="./alat.css">
+</head>
+<body>
+    <h1>Daftar Lensa</h1>
+    
+        <div class="all">
+           <div class="ls" onclick="lensatokina()" id="tokina">
+                <p id="ltokina">Lensa Tokina 14:20 mm</p>
+                <img id="gambartokina" src="./img/tokinals.png" alt="">
+                <p class="hargaalat">Rp<span id="harga_tokina">220,000</span>/hari</p>
+            </div>
+        </div>
+        <div class="all">
+            <div class="ls" onclick="nikon50()" id="lsnikon">
+                <p id="lnikon">Lensa Nikon 50 mm</p>
+                <img id="gambarlnikon" src="./img/ls20mm.png" alt="">
+                <p class="hargaalat">Rp<span id="harga_lnikon">50,000</span>/hari</p>
+            </div>
+        </div>
+        <div class="all">
+            <div class="ls" onclick="canon35mm()" id="lscanon">
+                <p id="lcanon">Lensa Canon 35 mm</p>
+                <img id="gambarlcanon" src="./img/can35mm.png" alt="">
+                <p class="hargasw">Rp<span id="harga_lcanon">130,000</span>/hari</p>
+            </div>
+        </div>
+    
+    
+    
+    <script>
+
+        function lensatokina(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("tokina").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("ltokina").innerHTML,
+                    harga: document.getElementById("harga_tokina").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function nikon50(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("lsnikon").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("lnikon").innerHTML,
+                    harga: document.getElementById("harga_lnikon").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+        function canon35mm(){
+            const electron = require("electron");
+            const { ipcRenderer } = electron;
+        
+            document.getElementById("lscanon").addEventListener("click", () =>{
+                let data = {
+                    pilihan: document.getElementById("lcanon").innerHTML,
+                    harga: document.getElementById("harga_lcanon").innerHTML
+                };
+                ipcRenderer.send('tampil_alat', data);
+                     
+
+                const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            }, false);         
+        }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sewa kamara murah dan berkualitas</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="./pilih.css">
+  </head>
+  <body>
+
+        
+            <h1>Pilihlah Alat yang ingin di sewa</h1>
+        <div class="card">
+            <p onclick="opsi1()">Sewa Kamera
+                <img src="./jpg/camera.jpg" alt="" width="550px" height="180px">
+            </p>
+
+        </div>
+
+        <div class="card">
+            <p onclick="opsi2()">Sewa Flash
+                <img src="./jpg/flash all.jpg" alt="" width="550px" height="180px">
+
+            </p>
+        </div>
+
+        <div class="card">
+            <p onclick="opsi3()">Sewa Lensa
+                <img src="./jpg/all len.jpg" alt="" width="550px" height="180px">
+            </p>
+        </div>
+
+        
+            
+
+
+    <script>
+        function opsi1(){
+         const { ipcRenderer } = require('electron');
+         ipcRenderer.send("kamera"); 
+         
+         const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            , false;  
+        }
+
+        function opsi2(){
+         const { ipcRenderer } = require('electron');
+         ipcRenderer.send("flash"); 
+
+         const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            , false;  
+        }
+
+        function opsi3(){
+         const { ipcRenderer } = require('electron');
+         ipcRenderer.send("lensa"); 
+
+         const remote = require('electron').remote
+                let w = remote.getCurrentWindow()
+                w.close()
+            , false;  
+        }
+
+
+    </script>
+  </body>
+</html>
